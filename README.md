@@ -33,7 +33,7 @@ A raiz deve estar assim:
   README.md
   helpers.py
   main.py
-  meu_email.py
+  meu_driver.py
   req.txt
   testes.py
 ```
@@ -88,6 +88,10 @@ Sua estrutura deve incluir estes dois novos arquivos já editados:
 python3 main.py
 ```
 Você pode acompanhar o andamento da execução pela ocupação da pasta .aux e pelo terminal que está rodando o programa.
+
+#### Observação (caso tenha problemas na execução)
+O programa roda um driver do selenium pra fazer o scrap (por default é o Chrome). Se você tiver algum problema para carregar o driver de modo que precise selecionar outro browser, faça-o no arquivo *meu_driver.py* de modo a alterar a variável `driver` de dentro da função. Não se esqueça de atualizar os imports e de atualizar a `options` também.
+
 
 ### 5. Depois de rodar
 

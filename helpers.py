@@ -6,14 +6,15 @@ import dotenv
 import openai
 import requests
 import re
-import os
-from selenium import webdriver
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from pdfminer.high_level import extract_text
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver import FirefoxOptions
+from pdfminer.high_level import extract_text
+import meu_driver
 
 dotenv.load_dotenv()
 
@@ -103,12 +104,7 @@ def get_soup(ticker: str, headless: bool = False) -> bs4.BeautifulSoup:
     Returns:
     BeautifulSoup: A BeautifulSoup object representing the parsed HTML content.
     """
-    options = FirefoxOptions()
-
-    options.add_argument(f'User-Agent=Agent-{random.randint(100, 999)}')
-    if headless:
-        options.add_argument('--headless')
-    driver = webdriver.Firefox(options=options)
+    driver = meu_driver.load_driver()
 
     website = os.getenv("WEBSITE")
     if not website.endswith('/'):
@@ -330,3 +326,37 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
         )
         rename_pdf_file(pdf_file_path)
         return res.choices[0].message.content
+
+
+def email_me(address: str, subject="Automatic Email via Python", body="Hello"):
+    """
+    Sends an email using the Gmail SMTP server.
+
+    Parameters:
+    - address (str): The email address to send the email to.
+    - subject (str): The subject of the email. Default is "Automatic Email via Python".
+    - body (str): The body of the email. Default is "Hello".
+    """
+    sender = address
+    recipient = sender
+
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    smtp_username = sender
+    smtp_password = os.getenv("GMAIL")
+
+    mime_multipart = MIMEMultipart()
+    mime_multipart['from'] = sender
+    mime_multipart['to'] = recipient
+    mime_multipart["subject"] = subject
+
+    email_body = MIMEText(body, 'plain', 'utf-8')
+    mime_multipart.attach(email_body)
+
+    with smtplib.SMTP(smtp_server, smtp_port) as smtp:
+        # Code to send the email
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.login(smtp_username, smtp_password)
+        smtp.send_message(mime_multipart)
+        print("Email enviado com sucesso!")

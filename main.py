@@ -1,7 +1,6 @@
 import os
 import dotenv
 from random import shuffle
-import meu_email
 import helpers
 from selenium.common.exceptions import TimeoutException
 
@@ -92,14 +91,14 @@ def main():
         assunto = "Lidos: " + ", ".join([x[:4]
                                          for x in tickers_lidos_ordenados])
         try:
-            meu_email.email_me(
+            helpers.email_me(
                 os.getenv('EMAIL'),
                 assunto,
                 corpo_final
             )
 
         except Exception as e:
-            print(e)
+            print("Erro no envio do email.", e)
 
 
 if __name__ == '__main__':
