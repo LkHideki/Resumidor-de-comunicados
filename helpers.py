@@ -265,10 +265,6 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
 
     Returns:
         str: The generated summary paragraph.
-
-    Raises:
-        BadRequestError: If the text exceeds the maximum token limit for the selected model.
-
     """
     if os.path.basename(pdf_file_path).startswith('-'):
         print('O arquivo já foi resumido antes.')
@@ -290,7 +286,7 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
     Apenas isto. Não coloque as < > acima no resumo. Insira uma dupla quebra de linha entre o título e o corpo.
     Sempre que possível, resuma o nome da empresa.
     Resuma datas como '19 de abril de 2021' como '19/04/21'.
-    Resuma informações como 'Resolução CVM nº 1.234/123' como '[rCVM 1.234/123]'.
+    Resuma informações como 'Resolução CVM nº 1.234/123' para '[rCVM 1.234/123]'.
     Prefira usar siglas como 'RS' ao invés de 'Rio Grande do Sul'.
     
     ''').strip()
@@ -311,7 +307,9 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
         )
         rename_pdf_file(pdf_file_path)
         return res.choices[0].message.content
-
+    except openai.AuthenticationError as e:
+        print("Erro de autenticação. Verifique se a chave da API está correta.")
+        return '-#-'
     except openai.BadRequestError as e:
         pattern = re.compile(
             r'maximum context length is ([0-9]+) tokens. However, your messages resulted in ([0-9]+) tokens.')

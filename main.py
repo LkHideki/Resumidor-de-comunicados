@@ -62,7 +62,9 @@ def main():
             date = arq['_date'].strftime("%d/%m")
             resumo = helpers.resume(
                 arq['filename'], gpt4_permitted=True).strip()
-            if resumo != '':
+            if resumo == '-#-':
+                return
+            elif resumo != '':
                 _bloco_do_ticker += f"({date}): "
                 _bloco_do_ticker += resumo + f'\n\nPdf: {link}\n\n'
                 print(ticker, date, '\n\n', resumo, end='\n\n\n')
