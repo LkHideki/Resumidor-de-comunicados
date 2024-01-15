@@ -1,5 +1,6 @@
 import datetime
 import os
+import random
 import bs4
 import dotenv
 import openai
@@ -12,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from pdfminer.high_level import extract_text
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import FirefoxOptions
 
 dotenv.load_dotenv()
 
@@ -102,11 +103,12 @@ def get_soup(ticker: str, headless: bool = False) -> bs4.BeautifulSoup:
     Returns:
     BeautifulSoup: A BeautifulSoup object representing the parsed HTML content.
     """
-    options = Options()
-    options.add_argument('User-Agent=Agent')
-    # if headless:
-    #     options.add_argument('--headless')
-    driver = webdriver.Chrome(options)
+    options = FirefoxOptions()
+
+    options.add_argument(f'User-Agent=Agent-{random.randint(100, 999)}')
+    if headless:
+        options.add_argument('--headless')
+    driver = webdriver.Firefox(options=options)
 
     website = os.getenv("WEBSITE")
     if not website.endswith('/'):
