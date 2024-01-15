@@ -11,6 +11,20 @@ A solução chegou!
 
 ## Como usar
 
+Primeiro, certifique-se de ter:
+1. Uma chave para usar a api da OpenAI (que usaremos para resumir os textos);
+2. Uma "senha de app" na sua conta Google (que usaremos para mandar o resumo por email).
+
+A *senha de app* é um recurso da conta google que serve para você logar em serviços que não suportam verificação em duas etapas. É como uma chave de api, mas que substitui a sua senha.
+
+Você pode gerar uma assim:
+1. Acesse sua conta Google em um navegador.
+2. Vá para a seção de segurança da sua conta.
+3. Procure a opção "Senhas de app" ou algo semelhante.
+4. Se você tiver a verificação em duas etapas ativada, você poderá selecionar a opção para gerar uma senha de app.
+5. Escolha o tipo de aplicativo e dispositivo para o qual você precisa da senha.
+6. Depois de selecionar, o Google irá gerar uma senha de 16 dígitos. Esta é a senha de app.
+
 ### 0. A estrutura da pasta
 A raiz deve estar assim:
 ```
@@ -24,7 +38,7 @@ A raiz deve estar assim:
   testes.py
 ```
 
-Crie um ambiente virtual, ative-o e instale as dependências listadas no *req.txt* com
+Crie um ambiente virtual, ative-o e instale as dependências listadas no **req.txt** com
 ```bash
 pip install -r req.txt
 ```
@@ -54,7 +68,7 @@ TXT_MONITORADO=tickers_monitorados.txt
 ```
 
 onde
-- GMAIL é a sua senha de app do gmail.
+- GMAIL é a sua *senha de app*.
 - EMAIL o seu email para onde o resumo será enviado.
 - WEBSITE é o site em que as buscas serão feitas.
 
@@ -69,7 +83,7 @@ Sua estrutura deve incluir estes dois novos arquivos já editados:
 ```
 
 ### 4. Para rodar
-*Com o ambiente virtual ativo*, basta rodar o arquivo main.py
+**Com o ambiente virtual ativo**, basta rodar o arquivo main.py
 ```bash
 python3 main.py
 ```
@@ -83,6 +97,6 @@ A nomenclatura dos pdfs segue:
 - Arquivos iniciados com a data ainda não foram lidos.
 - Arquivos iniciados com "-" já foram lidos e resumidos.
 
-*O email com o resumo só será enviado depois que todo o fluxo for bem sucedido.*
+**O email com o resumo só será enviado depois que todo o fluxo for bem sucedido.**
 
 Se a pasta .aux ficar muito pesada, exclua sem dó. Tem uma função no helpers.py que eu preparei para isso, mas decidi não colocar no fluxo do main.
