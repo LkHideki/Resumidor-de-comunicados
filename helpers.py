@@ -116,21 +116,27 @@ def get_soup(ticker: str, headless: bool = False) -> bs4.BeautifulSoup:
     website = os.getenv("WEBSITE")
     if not website.endswith('/'):
         website += '/'
+    if not website.endswith('acoes/'):
+        website += 'acoes/'
     driver.get(website + ticker.lower())
 
-    def clica(seletor: str):
-        # Espera até que a página esteja completamente carregada
+    def click(seletor: str) -> None:
+        """
+        Clicks on an element with the given CSS selector.
+
+        Args:
+            seletor (str): The CSS selector of the element to be clicked.
+        """
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, seletor)))
-        # Clica em comunicados
         driver.find_element(By.CSS_SELECTOR, seletor).click()
 
-    # Clica em GERAL
-    clica("#main-2 > div.tab-nav-resume > div > div > ul > li:nth-child(2) > a")
-    # Clica em Contábil
-    clica("#main-2 > div.tab-nav-resume > div > div > ul > li:nth-child(3) > a")
-    # Clica em Comunicados
-    clica("#main-2 > div.tab-nav-resume > div > div > ul > li:nth-child(4) > a")
+    # GERAL
+    click("#main-2 > div.tab-nav-resume > div > div > ul > li:nth-child(2) > a")
+    # Contábil
+    click("#main-2 > div.tab-nav-resume > div > div > ul > li:nth-child(3) > a")
+    # Comunicados
+    click("#main-2 > div.tab-nav-resume > div > div > ul > li:nth-child(4) > a")
 
     # Espera até que a página esteja completamente carregada
     try:

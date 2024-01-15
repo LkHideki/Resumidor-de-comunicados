@@ -21,7 +21,7 @@ def email_me(address: str, subject="Automatic Email via Python", body="Hello"):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
     smtp_username = sender
-    smtp_password = os.getenv("GAMIL")
+    smtp_password = os.getenv("GMAIL")
 
     mime_multipart = MIMEMultipart()
     mime_multipart['from'] = sender

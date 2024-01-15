@@ -45,7 +45,7 @@ cxse3
 Configure seu .env no seguinte formato (não use aspas depois dos =):
 ```
 OPENAI_KEY=
-GAMIL=
+GMAIL=
 
 EMAIL=
 WEBSITE=
@@ -54,7 +54,7 @@ TXT_MONITORADO=tickers_monitorados.txt
 ```
 
 onde
-- GAMIL é a sua senha de app do gmail.
+- GMAIL é a sua senha de app do gmail.
 - EMAIL o seu email para onde o resumo será enviado.
 - WEBSITE é o site em que as buscas serão feitas.
 
