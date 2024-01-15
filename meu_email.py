@@ -2,7 +2,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
 import smtplib
-from dotenv import load_dotenv
+import dotenv
 
 
 def email_me(address: str, subject="Automatic Email via Python", body="Hello"):
@@ -10,10 +10,11 @@ def email_me(address: str, subject="Automatic Email via Python", body="Hello"):
     Sends an email using the Gmail SMTP server.
 
     Parameters:
+    - address (str): The email address to send the email to.
     - subject (str): The subject of the email. Default is "Automatic Email via Python".
     - body (str): The body of the email. Default is "Hello".
     """
-    load_dotenv()
+    dotenv.load_dotenv()
     sender = address
     recipient = sender
 
@@ -34,10 +35,10 @@ def email_me(address: str, subject="Automatic Email via Python", body="Hello"):
         # Code to send the email
         smtp.ehlo()
         smtp.starttls()
-        smtp.login(smtp_username, smtp_password + "py")
+        smtp.login(smtp_username, smtp_password)
         smtp.send_message(mime_multipart)
         print("Email enviado com sucesso!")
 
 
 if __name__ == "__main__":
-    email_me()
+    pass
