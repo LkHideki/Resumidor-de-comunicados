@@ -68,7 +68,14 @@ Sua estrutura deve incluir estes dois novos arquivos já editados:
   ...e os outros itens já mencionados antes
 ```
 
-### 4. Depois de rodar
+### 4. Para rodar
+*Com o ambiente virtual ativo*, basta rodar o arquivo main.py
+```bash
+python3 main.py
+```
+Você pode acompanhar o andamento da execução pela ocupação da pasta .aux e pelo terminal que está rodando o programa.
+
+### 5. Depois de rodar
 
 Uma pasta *.aux* será criada na raiz para guardar os pdfs baixados.
 
@@ -76,4 +83,6 @@ A nomenclatura dos pdfs segue:
 - Arquivos iniciados com a data ainda não foram lidos.
 - Arquivos iniciados com "-" já foram lidos e resumidos.
 
-O email com o resumo só será enviado depois que todo o fluxo for bem sucedido.
+*O email com o resumo só será enviado depois que todo o fluxo for bem sucedido.*
+
+Se a pasta .aux ficar muito pesada, exclua sem dó. Tem uma função no helpers.py que eu preparei para isso, mas decidi não colocar no fluxo do main.
