@@ -1,4 +1,4 @@
-from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver import Firefox, FirefoxOptions
 
 
 def load_driver():
@@ -8,10 +8,10 @@ def load_driver():
     Returns:
         driver: The driver with specified options.
     """
-    options = ChromeOptions()
+    options = FirefoxOptions()
     options.add_argument('--incognito')
     options.add_argument('--headless')
 
-    driver = Chrome(options=options)
+    driver = Firefox(options=options)
 
     return driver
