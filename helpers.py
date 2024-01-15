@@ -283,10 +283,12 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
     <Título do resumo do Conteúdo>\n
     <Explicação suscinta dos tópicos importantes>.
     
-    Apenas isto. Não coloque as < > acima no resumo. Insira uma dupla quebra de linha entre o título e o corpo.
-    Sempre que possível, resuma o nome da empresa.
+    Apenas isto.
+    Não coloque os símbolos < > acima no resumo. Foi apenas um placeholder.
+    Insira uma dupla quebra de linha entre o título e o corpo.
+    Sempre que possível, resuma os nomes das empresas.
     Resuma datas como '19 de abril de 2021' como '19/04/21'.
-    Resuma informações como 'Resolução CVM nº 1.234/123' para '[rCVM 1.234/123]'.
+    Resuma informações como 'Resolução CVM nº 1.234/123' para apenas '[rCVM 1.234/123]'.
     Prefira usar siglas como 'RS' ao invés de 'Rio Grande do Sul'.
     
     ''').strip()
