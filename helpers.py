@@ -276,7 +276,7 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
 
     INSTRUCTION = re.sub(r'\t', '', '''
 
-    Você está lendo o comunicado público de uma empresa para fins de estudo. Resuma o texto em um parágrafo, destacando apenas os pontos mais importantes e centrais. O resumo deve ter, no máximo, 80 palavras. O formato deve ser exatamente:
+    Você está lendo o comunicado público de uma empresa para fins de estudo. Resuma o texto em um parágrafo, destacando apenas os pontos mais importantes e centrais. O resumo deve ter, no máximo, 85 palavras. O formato deve ser exatamente:
     <Título do resumo do Conteúdo>\n
     <Explicação suscinta dos tópicos importantes>.
     
@@ -285,7 +285,6 @@ def resume(pdf_file_path: str, gpt4_permitted: bool = False) -> str:
     Insira uma dupla quebra de linha entre o título e o corpo.
     Sempre que possível, resuma os nomes das empresas.
     Resuma datas como '19 de abril de 2021' como '19/04/21'.
-    Resuma informações como 'Resolução CVM nº 1.234/123' para apenas '[rCVM 1.234/123]'.
     Prefira usar siglas como 'RS' ao invés de 'Rio Grande do Sul'.
     
     ''').strip()
