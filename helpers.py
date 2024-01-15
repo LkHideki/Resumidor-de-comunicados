@@ -12,8 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from pdfminer.high_level import extract_text
 from selenium.common.exceptions import TimeoutException
-from webdriver_manager.chrome import ChromeDriverManager
-from platform import platform
+from selenium.webdriver.chrome.options import Options
+
 dotenv.load_dotenv()
 
 
@@ -102,17 +102,12 @@ def get_soup(ticker: str, headless: bool = False) -> bs4.BeautifulSoup:
     Returns:
     BeautifulSoup: A BeautifulSoup object representing the parsed HTML content.
     """
-    if 'macos' in platform().lower():
-        options = webdriver.FirefoxOptions()
-        options.add_argument('User-Agent=Google Chrome/5.0/Panaca/1.0')
-        if headless:
-            options.add_argument('--headless')
-        driver = webdriver.Firefox(options)
-    else:
-        options = webdriver.ChromeOptions()
-        options.binary_location = '/usr/bin/chromium-browser'
-        driver = webdriver.Chrome(options=options, service={
-                                  'executable_path': ChromeDriverManager().install()})
+    options = Options()
+    options.add_argument('User-Agent=Agent')
+    # if headless:
+    #     options.add_argument('--headless')
+    driver = webdriver.Chrome(options)
+
     website = os.getenv("WEBSITE")
     if not website.endswith('/'):
         website += '/'
