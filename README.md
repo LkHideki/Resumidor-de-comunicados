@@ -40,7 +40,7 @@ A raiz deve estar assim:
 
 Crie um ambiente virtual, ative-o e instale as dependências listadas no **req.txt** com
 ```bash
-pip install -r req.txt
+pip install -r requirements.txt
 ```
 
 
