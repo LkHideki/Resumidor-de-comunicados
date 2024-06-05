@@ -1,4 +1,6 @@
-__pycache__/
+**/_t-*
+**/__pycache__/
+push
 .venv/
 .env
 .DS_Store
